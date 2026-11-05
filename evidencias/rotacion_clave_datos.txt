@@ -1,0 +1,10 @@
+### Estado inicial: versión de clave en la tabla estudiantes
+[('v1:', 5)]
+### Paso 1: v2 antepuesta en DATA_ENC_KEYS (v2 activa, v1 solo descifra)
+### Paso 2: python scripts/rotar_clave_datos.py
+Campos re-cifrados: 10. Registros con clave anterior: 0.
+### Paso 3: verificación
+[('v2:', 5)]
+### Paso 4: v1 retirada; la aplicación sigue descifrando con v2:
+5190-25-1001 *********0101
+5190-25-1002 *********0202

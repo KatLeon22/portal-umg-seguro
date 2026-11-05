@@ -1,0 +1,7 @@
+# Bloquea el commit si Gitleaks detecta un secreto en los cambios preparados.
+# Instalación:  pip install pre-commit && pre-commit install
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.2
+    hooks:
+      - id: gitleaks

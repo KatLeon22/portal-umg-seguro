@@ -1,0 +1,132 @@
+
+[SEGURO] q="zzz' OR apellido LIKE '" -> HTTP 200, 'Resultados: 0' en HTML: True
+
+[SEGURO] q="x' OR nombre LIKE '" -> HTTP 200, 'Resultados: 0' en HTML: True
+
+[VULNERABLE] respuesta login: {'autenticado': True, 'como': 'admin@portal.test'}
+
+[VULNERABLE] SQL final: SELECT carnet, nombre, apellido FROM estudiantes WHERE apellido LIKE '%zzz' OR apellido LIKE '%' ORDER BY apellido 
+[VULNERABLE] filas: 5
+
+[VULNERABLE] SQL final: SELECT carnet, nombre, apellido FROM estudiantes WHERE apellido LIKE '%zzz' UNION SELECT email, password_sha256, 'x' FROM usuarios_legado --%' ORDER BY apellido
+[VULNERABLE] fila extraída: ('admin@portal.test', 'f90b3f00cd3c434f4c603673ed898b72597438747a405064437b2265c2eab9de', 'x')
+[VULNERABLE] fila extraída: ('ana.lopez@portal.test', '8c5afe7c22fab76d3a3376633e166493395907949998bd3353f183b8cbb7f1eb', 'x')
+[VULNERABLE] fila extraída: ('docente@portal.test', '81d75b80d796b58d0bbd777c56bc4a17ab54e48eec8db614fedf0e64b40a8234', 'x')
+
+[SEGURO] línea renderizada: <li><em>usuario-3</em>: &lt;script&gt;alert(&#34;XSS&#34;)&lt;/script&gt;&lt;img src=x onerror=alert(1)&gt;</li>
+
+[SEGURO] CSP: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'
+
+[VULNERABLE] fragmento: <li>lab: <script>alert("XSS")</script><img src=x onerror=alert(1)></li>
+
+</ul></body></htm
+
+[VULNERABLE] comando: tar -czf /tmp/tmp9tnph1t6/reportes/base; id > /tmp/tmp9tnph1t6/PWNED.txt; echo.tar.gz -C /tmp/tmp9tnph1t6/reportes base; id > /tmp/tmp9tnph1t6/PWNED.txt; echo.csv
+[VULNERABLE] archivo creado por el atacante: True -> uid=1000(kateryn) gid=1000(kateryn) grupos=1000(kateryn),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),114(lpadmin)
+
+[MEDICIÓN] SHA-256: ~2,617,916 intentos/s en 1 núcleo de CPU
+[MEDICIÓN] scrypt N=2^17: 386 ms por intento (~2.6 intentos/s) y 128 MiB de RAM
+
+[SEGURO] registro en BD: docente@portal.test -> scrypt:131072:8:1$WwPiHiKHQmpaYttr$d3cd02c18ea5166f3b689876...
+
+[SEGURO] contraseña incorrecta -> HTTP 401; correcta -> HTTP 302 (redirección)
+
+[SEGURO] hash 1: scrypt:131072:8:1$3bWtpSPqSWF7Fotq$8d2fbb7d8f8889441d21ad31d ...
+[SEGURO] hash 2: scrypt:131072:8:1$SgwcDqAWUPZAE4Yl$f153027dca85b1f6250a3677a ...
+
+[INSEGURO] SHA-256 sin sal en tabla legado: f90b3f00cd3c434f4c603673ed898b72597438747a405064437b2265c2eab9de
+
+[SEGURO] dpi_cifrado: v1:7gB/epCN86+SZFUx49r/uEwKTXzrLvxTl50vUCTe+F8fW/4kVUN/qKQ= 
+[SEGURO] dpi_indice: 595fa0b7d8d1058538f72999497db4bb9a01d589d8e365ebfe1c8f8936b9ce21
+
+[SEGURO] DATABASE_URL leída del entorno inyectado: sqlite:////tmp/tmp...
+
+[SEGURO] credenciales encontradas en app/: ninguna
+
+[SEGURO] error de arranque: Faltan secretos obligatorios: DATA_ENC_KEYS. Defínalos en Vault o en el entorno (ver .env.example).
+
+[INSEGURO] línea de log: 2026-11-04 23:25:17,499 INFO Intento de login email=docente@portal.test password=MiClaveSecreta#999 sql=SELECT id, email FROM usuarios_legado WHERE email = 'docente@porta
+
+[SEGURO] respuesta al usuario (HTTP 500): <h1>Ocurrió un error inesperado</h1> <p>Código: 500</p> <p>Si necesita soporte, indique el número de incidente: <code>2035d765614b</code></p> 
+[SEGURO] traza en servidor (redactada): RuntimeError: Fallo de conexión a sqlite:////tmp/tmpipb6l665/portal.db usando token=[TOKEN-REDACTADO]
+
+[SEGURO] eventos registrados: ['admin.acceso', 'auth.login.exito', 'expediente.consulta']
+
+[SEGURO] registro generado: {"ts": "2026-11-05T05:25:23.552+00:00", "nivel": "WARNING", "evento": "auth.login.fallo", "mensaje": "auth.login.fallo", "email": "d***@portal.test", "user_id": 2, "motivo": "credenciales_invalidas", "ip": "127.0.0.1"}
+
+[SEGURO] evento redactado: {"ts": "2026-11-05T05:25:26.075+00:00", "nivel": "ERROR", "evento": "error.interno", "mensaje": "password=[REDACTADO] Bearer [REDACTADO]", "token": "[REDACTADO]", "clave_api": "[REDACTADO]", "dpi": "[REDACTADO]", "nota": "[DPI-REDACTADO]"}
+
+[SEGURO] versión negociada: TLSv1.3; suite: TLS_AES_256_GCM_SHA384
+[SEGURO] ['HTTP/1.0 200 OK', 'Strict-Transport-Security: max-age=31536000; includeSubDomains', 'Set-Cookie: session=<valor firmado>; Secure; HttpOnly; Path=/; SameSite=Lax']
+
+[SEGURO] cliente TLS 1.1 rechazado: SSLError [SSL: TLSV1_ALERT_PROTOCOL_VERSION] tlsv1 alert protocol version (_ssl.c:1000)
+
+[SEGURO] respuesta a HTTP sin TLS: conexión cerrada
+test_busqueda_normaliza_antes_de_validar (tests.test_01_validacion.TestValidacion.test_busqueda_normaliza_antes_de_validar) ... ok
+test_calificaciones (tests.test_01_validacion.TestValidacion.test_calificaciones) ... ok
+test_carnet (tests.test_01_validacion.TestValidacion.test_carnet) ... ok
+test_email (tests.test_01_validacion.TestValidacion.test_email) ... ok
+test_nombres (tests.test_01_validacion.TestValidacion.test_nombres) ... ok
+test_valido_no_significa_seguro (tests.test_01_validacion.TestValidacion.test_valido_no_significa_seguro)
+Un dato VÁLIDO puede romper un intérprete si se concatena. ... ok
+test_parametro_es_dato_no_codigo (tests.test_02_sql_injection.TestSQLInjection.test_parametro_es_dato_no_codigo)
+Demostración directa en el motor: el plan de ejecución no cambia. ... [2026-11-04 23:24:32,469] WARNING in __init__: LAB_MODE activo: rutas vulnerables expuestas en /lab (solo laboratorio)
+ok
+test_seguro_apellido_con_apostrofo_funciona (tests.test_02_sql_injection.TestSQLInjection.test_seguro_apellido_con_apostrofo_funciona) ... ok
+test_seguro_comodines_like_escapados (tests.test_02_sql_injection.TestSQLInjection.test_seguro_comodines_like_escapados) ... ok
+test_seguro_payload_no_altera_estructura (tests.test_02_sql_injection.TestSQLInjection.test_seguro_payload_no_altera_estructura) ... ok
+test_vulnerable_apellido_valido_rompe_sql (tests.test_02_sql_injection.TestSQLInjection.test_vulnerable_apellido_valido_rompe_sql) ... ok
+test_vulnerable_login_bypass (tests.test_02_sql_injection.TestSQLInjection.test_vulnerable_login_bypass) ... ok
+test_vulnerable_tautologia_devuelve_todo (tests.test_02_sql_injection.TestSQLInjection.test_vulnerable_tautologia_devuelve_todo) ... ok
+test_vulnerable_union_extrae_hashes (tests.test_02_sql_injection.TestSQLInjection.test_vulnerable_union_extrae_hashes) ... ok
+test_dom_seguro_usa_textcontent (tests.test_03_xss.TestXSS.test_dom_seguro_usa_textcontent) ... ok
+test_seguro_almacenado_codificado (tests.test_03_xss.TestXSS.test_seguro_almacenado_codificado) ... ok
+test_seguro_csp_defensa_en_profundidad (tests.test_03_xss.TestXSS.test_seguro_csp_defensa_en_profundidad) ... ok
+test_vulnerable_almacenado (tests.test_03_xss.TestXSS.test_vulnerable_almacenado) ... ok
+test_vulnerable_reflejado (tests.test_03_xss.TestXSS.test_vulnerable_reflejado) ... ok
+test_codigo_seguro_no_usa_shell (tests.test_04_comandos.TestComandos.test_codigo_seguro_no_usa_shell)
+Análisis estático: ninguna llamada a subprocess en el módulo seguro usa shell=True. ... ok
+test_endpoint_seguro_admin (tests.test_04_comandos.TestComandos.test_endpoint_seguro_admin) ... ok
+test_seguro_flujo_valido_tarfile_y_binario (tests.test_04_comandos.TestComandos.test_seguro_flujo_valido_tarfile_y_binario) ... ok
+test_seguro_rechaza_metacaracteres (tests.test_04_comandos.TestComandos.test_seguro_rechaza_metacaracteres) ... ok
+test_vulnerable_ejecuta_comando_inyectado (tests.test_04_comandos.TestComandos.test_vulnerable_ejecuta_comando_inyectado) ... tar: Rechazo cobarde a crear un archivo vacío
+Pruebe 'tar --help' o 'tar --usage' para más información.
+sh: 1: echo.tar.gz: not found
+sh: 1: echo.csv: not found
+ok
+test_bloqueo_tras_5_fallos (tests.test_05_passwords.TestPasswords.test_bloqueo_tras_5_fallos) ... ok
+test_costo_comparado (tests.test_05_passwords.TestPasswords.test_costo_comparado) ... ok
+test_hash_almacenado_es_kdf_con_sal (tests.test_05_passwords.TestPasswords.test_hash_almacenado_es_kdf_con_sal) ... ok
+test_login_correcto_e_incorrecto (tests.test_05_passwords.TestPasswords.test_login_correcto_e_incorrecto) ... ok
+test_misma_password_distinta_sal_distinto_hash (tests.test_05_passwords.TestPasswords.test_misma_password_distinta_sal_distinto_hash) ... ok
+test_sha256_simple_es_determinista (tests.test_05_passwords.TestPasswords.test_sha256_simple_es_determinista) ... ok
+test_aad_impide_mover_dato_a_otro_registro (tests.test_06_cifrado.TestCifrado.test_aad_impide_mover_dato_a_otro_registro) ... ok
+test_alteracion_detectada (tests.test_06_cifrado.TestCifrado.test_alteracion_detectada) ... ok
+test_bd_no_contiene_dpi_en_claro (tests.test_06_cifrado.TestCifrado.test_bd_no_contiene_dpi_en_claro) ... ok
+test_busqueda_por_indice_ciego (tests.test_06_cifrado.TestCifrado.test_busqueda_por_indice_ciego) ... ok
+test_expediente_muestra_dpi_enmascarado (tests.test_06_cifrado.TestCifrado.test_expediente_muestra_dpi_enmascarado) ... ok
+test_ida_y_vuelta_y_nonce_unico (tests.test_06_cifrado.TestCifrado.test_ida_y_vuelta_y_nonce_unico) ... ok
+test_rotacion_de_claves (tests.test_06_cifrado.TestCifrado.test_rotacion_de_claves) ... ok
+test_app_obtiene_credenciales_de_fuente_externa (tests.test_07_secretos.TestSecretos.test_app_obtiene_credenciales_de_fuente_externa) ... ok
+test_clave_debil_rechazada (tests.test_07_secretos.TestSecretos.test_clave_debil_rechazada) ... ok
+test_codigo_fuente_sin_credenciales (tests.test_07_secretos.TestSecretos.test_codigo_fuente_sin_credenciales) ... ok
+test_env_ignorado_por_git (tests.test_07_secretos.TestSecretos.test_env_ignorado_por_git) ... ok
+test_sin_secretos_no_arranca (tests.test_07_secretos.TestSecretos.test_sin_secretos_no_arranca) ... ok
+test_contraste_log_inseguro (tests.test_08_logging_errores.TestLogging.test_contraste_log_inseguro)
+El endpoint de laboratorio reproduce el registro inseguro original. ... ok
+test_error_interno_no_expone_detalles (tests.test_08_logging_errores.TestLogging.test_error_interno_no_expone_detalles) ... ok
+test_eventos_de_negocio (tests.test_08_logging_errores.TestLogging.test_eventos_de_negocio) ... ok
+test_inyeccion_de_registros (tests.test_08_logging_errores.TestLogging.test_inyeccion_de_registros) ... ok
+test_login_fallido_sin_password (tests.test_08_logging_errores.TestLogging.test_login_fallido_sin_password) ... ok
+test_modificacion_registrada (tests.test_08_logging_errores.TestLogging.test_modificacion_registrada) ... ok
+test_redaccion_defensiva (tests.test_08_logging_errores.TestLogging.test_redaccion_defensiva) ... ok
+test_certificado_no_confiable_es_rechazado (tests.test_09_tls.TestTLS.test_certificado_no_confiable_es_rechazado) ... ok
+test_https_negocia_tls_moderno (tests.test_09_tls.TestTLS.test_https_negocia_tls_moderno) ... 127.0.0.1 - - [04/Nov/2026 23:25:29] "GET /login HTTP/1.1" 200 -
+ok
+test_rechaza_tls_1_1 (tests.test_09_tls.TestTLS.test_rechaza_tls_1_1) ... ok
+test_texto_plano_no_es_atendido (tests.test_09_tls.TestTLS.test_texto_plano_no_es_atendido) ... ok
+
+----------------------------------------------------------------------
+Ran 53 tests in 61.627s
+
+OK

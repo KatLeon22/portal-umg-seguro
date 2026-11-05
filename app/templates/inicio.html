@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h1>Portal Académico</h1>
+<p>Aplicación de prueba para la Tarea Integradora (Semanas 4 y 5). Todos los datos son ficticios.</p>
+{% if session.rol == 'estudiante' and session.carnet %}
+  <p><a href="{{ url_for('portal.expediente', carnet=session.carnet) }}">Ver mi expediente</a></p>
+{% endif %}
+{% endblock %}

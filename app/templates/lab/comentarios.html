@@ -1,0 +1,9 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>LAB vulnerable - comentarios</title></head>
+<body><h1>[LAB VULNERABLE] Comentarios</h1>
+<form method="post"><textarea name="contenido"></textarea><button>Publicar</button></form>
+<ul>
+{% for c in comentarios %}
+  {# VULNERABLE: el filtro |safe desactiva la codificación de salida #}
+  <li>{{ c.autor }}: {{ c.contenido|safe }}</li>
+{% endfor %}
+</ul></body></html>

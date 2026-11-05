@@ -1,0 +1,16 @@
+# Secretos y material criptográfico: NUNCA se versionan
+.env
+.env.*
+!.env.example
+certs/
+*.key
+*.pem
+# Datos y registros del laboratorio
+instance/
+*.db
+*.log
+__pycache__/
+.venv/
+
+# Repositorio de la simulación de fuga (Fase II-D)
+laboratorio-fuga-git/

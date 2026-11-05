@@ -1,0 +1,10 @@
+body{font-family:system-ui,Arial,sans-serif;margin:0;color:#1d2433}
+header{background:#0b3d6e;color:#fff;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header a,header button{color:#fff;margin-left:12px;background:none;border:0;cursor:pointer;font:inherit}
+main{max-width:900px;margin:24px auto;padding:0 16px}
+label{display:block;margin:8px 0}
+input,textarea{padding:6px;max-width:100%}
+textarea{width:100%;min-height:80px}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccd;padding:6px;text-align:left}
+.aviso{background:#fff4d6;padding:8px;border-left:4px solid #e0a100}
+.inline{display:inline}

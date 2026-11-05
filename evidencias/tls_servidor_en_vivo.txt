@@ -1,0 +1,15 @@
+### 1) Negociación por defecto
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+subject=C = GT, O = Laboratorio MASI, CN = localhost
+Verify return code: 0 (ok)
+
+### 2) Cliente forzado a TLS 1.2 (permitido)
+    Protocol  : TLSv1.2
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+
+### 3) Cliente forzado a TLS 1.1 (el servidor lo rechaza)
+40E7976B9C770000:error:0A00042E:SSL routines:ssl3_read_bytes:tlsv1 alert protocol version:../ssl/record/rec_layer_s3.c:1599:SSL alert number 70
+New, (NONE), Cipher is (NONE)
+
+### 4) HTTP sin cifrar al puerto TLS
+curl terminó con código 56 (52/56 = el servidor cierra la conexión)

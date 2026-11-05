@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Portal Académico{% endblock %} · Laboratorio MASI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+<header>
+  <strong>Portal Académico (laboratorio, datos ficticios)</strong>
+  <nav>
+    <a href="{{ url_for('portal.inicio') }}">Inicio</a>
+    {% if session.user_id %}
+      <a href="{{ url_for('portal.comentarios') }}">Comentarios</a>
+      {% if session.rol in ('docente','admin') %}<a href="{{ url_for('portal.buscar_estudiantes') }}">Buscar estudiantes</a>{% endif %}
+      {% if session.rol == 'admin' %}<a href="{{ url_for('portal.panel_admin') }}">Administración</a>{% endif %}
+      <form method="post" action="{{ url_for('portal.logout') }}" class="inline">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit">Salir</button>
+      </form>
+    {% else %}
+      <a href="{{ url_for('portal.login') }}">Ingresar</a>
+      <a href="{{ url_for('portal.registro') }}">Registro</a>
+    {% endif %}
+  </nav>
+</header>
+<main>
+  {% with mensajes = get_flashed_messages() %}
+    {% for m in mensajes %}<p class="aviso">{{ m }}</p>{% endfor %}
+  {% endwith %}
+  {% block contenido %}{% endblock %}
+</main>
+</body>
+</html>

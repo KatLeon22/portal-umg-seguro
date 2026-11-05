@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Expediente{% endblock %}
+{% block contenido %}
+<h1>Expediente académico</h1>
+<p><strong>{{ est.nombre }} {{ est.apellido }}</strong> · Carné {{ est.carnet }} · DPI {{ dpi }}</p>
+<table>
+  <tr><th>Curso</th><th>Nota</th>{% if session.rol in ('docente','admin') %}<th>Modificar</th>{% endif %}</tr>
+  {% for n in notas %}
+  <tr><td>{{ n.curso }}</td><td>{{ n.nota }}</td>
+    {% if session.rol in ('docente','admin') %}
+    <td><form method="post" action="{{ url_for('portal.modificar_calificacion', cal_id=n.id) }}" class="inline">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input name="nota" size="5" maxlength="6"><button type="submit">Guardar</button></form></td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

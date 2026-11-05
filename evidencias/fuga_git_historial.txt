@@ -1,0 +1,24 @@
+### Historial del repositorio de laboratorio
+0713e3b Elimina credenciales del código
+d18295d Agrega integración de reportes
+cdf8327 Estructura inicial del portal
+
+### ¿Está el token en la versión actual (HEAD)?
+No: el archivo actual ya no contiene el token.
+
+### ¿Sigue en el historial? git log -S <token> (pickaxe)
+0713e3b Elimina credenciales del código
+d18295d Agrega integración de reportes
+
+### Recuperación del secreto desde el commit d18295d (git show d18295d:config.py)
+# Configuración de reportes
+DB_HOST = "10.0.5…[recortado en la evidencia]"
+DB_USER = "admin_…[recortado en la evidencia]"
+DB_PASSWORD = "PtP7lb…[recortado en la evidencia]"
+GITHUB_TOKEN = "ghp_m3…[recortado en la evidencia]"
+AWS_ACCESS_KEY_ID = "AKIAVS…[recortado en la evidencia]"
+AWS_SECRET_ACCESS_KEY = "6HX9Ij…[recortado en la evidencia]"
+
+### Ambas versiones de config.py siguen guardadas como objetos en la base de datos de Git
+81a588e4aadee150480c83c8fcf8b6d540c9ce0b config.py
+9b45078d0fa9d5b60d0c47b617b5009290b3dc53 config.py

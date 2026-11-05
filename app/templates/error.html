@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block titulo %}Error{% endblock %}
+{% block contenido %}
+<h1>{% if codigo == 500 %}Ocurrió un error inesperado{% else %}No fue posible procesar la solicitud{% endif %}</h1>
+<p>Código: {{ codigo }}</p>
+{% if incidente %}<p>Si necesita soporte, indique el número de incidente: <code>{{ incidente }}</code></p>{% endif %}
+{% endblock %}

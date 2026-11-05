@@ -1,0 +1,20 @@
+# Trabajador de reportes separado: única identidad que puede ejecutar la compresión.
+# Sin red, sin shell de inicio de sesión, escritura solo en el directorio de reportes.
+[Unit]
+Description=Generador de reportes del Portal Académico
+
+[Service]
+User=portal-reportes
+Group=portal-reportes
+WorkingDirectory=/opt/portal-umg
+Environment=REPORT_DIR=/opt/portal-umg/instance/reportes
+ExecStart=/opt/portal-umg/.venv/bin/python -m app.worker_reportes %i
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateNetwork=yes
+ReadWritePaths=/opt/portal-umg/instance/reportes
+CapabilityBoundingSet=
+SystemCallFilter=@system-service
+UMask=0077

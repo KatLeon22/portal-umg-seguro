@@ -1,0 +1,7 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>LAB vulnerable - búsqueda</title></head>
+<body><h1>[LAB VULNERABLE] Búsqueda por apellido</h1>
+<form method="get"><input name="q" value="{{ q }}"><button>Buscar</button></form>
+<p>Sentencia ejecutada:</p><pre>{{ sql }}</pre>
+<p>Resultados: {{ resultados|length }}</p>
+<ul>{% for r in resultados %}<li>{{ r[0] }} | {{ r[1] }} | {{ r[2] }}</li>{% endfor %}</ul>
+</body></html>

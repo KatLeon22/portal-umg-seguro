@@ -1,0 +1,17 @@
+title = "Portal Académico - configuración de Gitleaks"
+
+[extend]
+useDefault = true          # todas las reglas oficiales (AWS, GitHub, claves privadas, genéricas...)
+
+[allowlist]
+description = "Antipatrones documentados del laboratorio (valores ficticios, ver lab_antipatrones/README.md)"
+paths = ['''lab_antipatrones/''']
+
+# Regla adicional: durante la verificación, las reglas por defecto de Gitleaks 8.16
+# no detectaron AWS_SECRET_ACCESS_KEY (solo el Access Key ID). Se agrega una regla propia.
+[[rules]]
+id = "aws-secret-access-key-asignacion"
+description = "AWS Secret Access Key asignada en código"
+regex = '''(?i)aws_?secret_?access_?key\s*[=:]\s*["']([A-Za-z0-9/+]{40})["']'''
+secretGroup = 1
+keywords = ["aws_secret_access_key", "secret_access_key"]

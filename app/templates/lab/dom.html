@@ -1,0 +1,10 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><title>LAB vulnerable - DOM XSS</title></head>
+<body><h1>[LAB VULNERABLE] XSS basado en DOM</h1>
+<p>Filtro: <span id="filtro"></span></p>
+<script>
+  // VULNERABLE: fuente controlada por el atacante (location.hash) -> sumidero innerHTML.
+  // El fragmento # nunca llega al servidor: ningún control del lado servidor lo ve.
+  var filtro = decodeURIComponent(location.hash.slice(1).replace("filtro=", ""));
+  document.getElementById("filtro").innerHTML = filtro;
+</script>
+</body></html>

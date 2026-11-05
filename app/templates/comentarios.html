@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Comentarios{% endblock %}
+{% block contenido %}
+<h1>Comentarios</h1>
+<form method="post">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <textarea name="contenido" maxlength="1000" required></textarea>
+  <button type="submit">Publicar</button>
+</form>
+<p>Filtro (se lee del fragmento #filtro=...): <span id="filtro-actual"></span></p>
+<ul id="lista-comentarios">
+  {% for c in comentarios %}
+  {# Jinja2 con autoescape: < > & " ' se convierten en entidades HTML #}
+  <li><em>{{ c.autor }}</em>: {{ c.contenido }}</li>
+  {% endfor %}
+</ul>
+<script src="{{ url_for('static', filename='comentarios.js') }}"></script>
+{% endblock %}

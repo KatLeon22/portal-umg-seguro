@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block titulo %}Búsqueda{% endblock %}
+{% block contenido %}
+<h1>Búsqueda de estudiantes</h1>
+<form method="get">
+  <input name="q" value="{{ q }}" maxlength="50">
+  <button type="submit">Buscar</button>
+</form>
+<p>Resultados: {{ resultados|length }}</p>
+<table>
+  <tr><th>Carné</th><th>Nombre</th><th>Apellido</th></tr>
+  {% for r in resultados %}
+  <tr><td><a href="{{ url_for('portal.expediente', carnet=r.carnet) }}">{{ r.carnet }}</a></td><td>{{ r.nombre }}</td><td>{{ r.apellido }}</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

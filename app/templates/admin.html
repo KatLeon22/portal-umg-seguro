@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block titulo %}Administración{% endblock %}
+{% block contenido %}
+<h1>Administración</h1>
+<form method="post" action="{{ url_for('portal.generar_reporte') }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <label>Nombre del reporte (a-z, 0-9, _ y -) <input name="nombre" pattern="[a-z0-9][a-z0-9_-]{0,39}" required></label>
+  <button type="submit">Generar y comprimir</button>
+</form>
+{% endblock %}
